@@ -21,7 +21,6 @@ def draw():
         update_grid()
         time.sleep(0.1)
     draw_grid()
-    draw_grid_colour()
     draw_controls()
 
 def create_grid(g_size):
@@ -65,24 +64,6 @@ def draw_grid():
                 fill(255)
             else:
                 fill(255,0,0)
-            rect(display_margin+(x*grid_cell_size),\
-                 display_margin+(y*grid_cell_size),\
-                 grid_cell_size,grid_cell_size)
-            
-def draw_grid_colour():
-    for y in range(len(grid)):
-        for x in range(len(grid)):
-            if grid[y][x] == 0:
-                fill(255)
-            elif grid[y][x] == 1:
-                fill(255,0,0)
-            elif grid[y][x] == 2:
-                fill(0,255,0)
-            elif grid[y][x] == 3:
-                fill(0,0,255)
-            elif grid[y][x] == 4:
-                fill(128,128,128)
-
             rect(display_margin+(x*grid_cell_size),\
                  display_margin+(y*grid_cell_size),\
                  grid_cell_size,grid_cell_size)
