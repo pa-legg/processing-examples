@@ -81,26 +81,23 @@ def clear_grid():
     grid = create_grid(grid_size)
              
 def mousePressed():
-    global grid
     grid_cell_x = (mouseX-display_margin) / grid_cell_size
     grid_cell_y = (mouseY-display_margin) / grid_cell_size
-    if grid_cell_x < 0:
-        grid_cell_x = 0
-    if grid_cell_x >= len(grid):
-        grid_cell_x = len(grid) - 1
-    if grid_cell_y < 0:
-        grid_cell_y = 0
-    if grid_cell_y >= len(grid):
-        grid_cell_y = len(grid) - 1
     if mouseButton == LEFT:
-        grid[grid_cell_y][grid_cell_x] = 1
+        set_grid_cell(grid_cell_x, grid_cell_y, 1)
     else:
-        grid[grid_cell_y][grid_cell_x] = 0 
+        set_grid_cell(grid_cell_x, grid_cell_y, 0)
 
 def mouseDragged():
-    global grid
     grid_cell_x = (mouseX-display_margin) / grid_cell_size
     grid_cell_y = (mouseY-display_margin) / grid_cell_size
+    if mouseButton == LEFT:
+        set_grid_cell(grid_cell_x, grid_cell_y, 1)
+    else:
+        set_grid_cell(grid_cell_x, grid_cell_y, 0)
+    
+def set_grid_cell(grid_cell_x, grid_cell_y, value):
+    global grid
     if grid_cell_x < 0:
         grid_cell_x = 0
     if grid_cell_x >= len(grid):
@@ -109,10 +106,7 @@ def mouseDragged():
         grid_cell_y = 0
     if grid_cell_y >= len(grid):
         grid_cell_y = len(grid) - 1
-    if mouseButton == LEFT:
-        grid[grid_cell_y][grid_cell_x] = 1
-    else:
-        grid[grid_cell_y][grid_cell_x] = 0  
+    grid[grid_cell_y][grid_cell_x] = value
 
 def keyPressed():
     global started
